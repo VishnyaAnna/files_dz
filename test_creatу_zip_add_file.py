@@ -19,7 +19,7 @@ with zipfile.ZipFile(path_zip, mode='w',
 
 
 # Проверка содержимого xlsx
-def check_xlsx_file():
+def test_check_xlsx_file():
     with zipfile.ZipFile(path_zip) as zf:
         xf = zf.extract("file_xlsx.xlsx")
         xlsxfile = load_workbook(xf)
@@ -30,7 +30,7 @@ def check_xlsx_file():
 
 
 # Проверка содержимого pdf
-def check_pdf_file():
+def test_check_pdf_file():
     with zipfile.ZipFile(path_zip, mode='r') as zip_file:
         text = str(zip_file.read('file_pdf.pdf'))
         assert text.__contains__('PDF')
@@ -39,16 +39,17 @@ def check_pdf_file():
 
 
 # Проверка содержимого csv
-with zipfile.ZipFile(path_zip) as zf:
-    cf = zf.extract("file_csv.csv")
-    with open(cf) as csvfile:
-        csvfile = csv.reader(csvfile)
+def test_check_csv_file():
+    with zipfile.ZipFile(path_zip) as zf:
+        cf = zf.extract("file_csv.csv")
+        with open(cf) as csvfile:
+         csvfile = csv.reader(csvfile)
         list_csv = []
         for r in csvfile:
             text = "".join(r).replace(";", " ")
             list_csv.append(text)
 
-        assert list_csv[
-                   0] == "Anna Pavel Peter", f"Expected result: {'Anna Pavel Peter'}, " \
+            assert list_csv[
+                    0] == "Anna Pavel Peter", f"Expected result: {'Anna Pavel Peter'}, " \
                                              f"actual result: {list_csv[0]}"
-os.remove("file_xlsx.xlsx")
+    os.remove("file_xlsx.xlsx")
