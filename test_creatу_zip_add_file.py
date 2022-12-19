@@ -56,4 +56,4 @@ def test_check_csv_file():
                 assert list_csv[0] == "Anna Pavel Peter", \
                     f"Expected result: {'Anna Pavel Peter'}, actual result: {list_csv[0]}"
 
-            os.remove("file_csv.csv")
+        os.remove("file_csv.csv")

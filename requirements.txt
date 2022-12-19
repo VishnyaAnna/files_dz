@@ -1,4 +1,4 @@
 selene==2.0.0b16
 pytest==7.2
-PyPDF
+PyPDF2
 openpyxl
